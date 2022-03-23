@@ -9,3 +9,5 @@ npm i tailwindcss postcss autoprefixer
 ## css パッケージマネージャーの導入
 
 npm i styled-components react-responsive
+npm i -D @types/styled-components
+npm i twin.macro
