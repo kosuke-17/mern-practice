@@ -1,7 +1,10 @@
 import { FC } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
+import Navbar from "../../components/navbar";
 
+// overflow-x-hidden : ブロックレベル要素の中身が溢れた場合の表示方法
+// flex-col : flexの方向を制御する(垂直に配置)
 const PageContainer = styled.div`
   ${tw`
     flex
@@ -14,7 +17,11 @@ const PageContainer = styled.div`
 `;
 
 const HomePage: FC = () => {
-  return <PageContainer>hello world</PageContainer>;
+  return (
+    <PageContainer>
+      <Navbar />
+    </PageContainer>
+  );
 };
 
 export default HomePage;
