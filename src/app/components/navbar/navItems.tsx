@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import tw from "twin.macro";
 // typingディレクトリよりreact-burger-menuを
 import { slide as Menu } from "react-burger-menu";
@@ -15,8 +15,8 @@ const ListContainer = styled.ul`
   `}
 `;
 
-// ナビゲーションのスタイル
-const NavItem = styled.li`
+// ナビゲーションのスタイル(プロパティを作成)
+const NavItem = styled.li<{ menu?: any }>`
   ${tw`
   text-xs
   md:text-base
@@ -28,7 +28,18 @@ const NavItem = styled.li`
   duration-300
   ease-in-out
   hover:text-gray-700
-`}
+  `}
+  /* メニューの文字をスタイル */
+  ${({ menu }) =>
+    menu &&
+    css`
+      ${tw`
+      text-white
+      text-xl
+      mb-3
+      focus:text-white
+      `}
+    `}
 `;
 
 const NavItems = () => {
@@ -40,16 +51,16 @@ const NavItems = () => {
     return (
       <Menu right styles={menuStyles}>
         <ListContainer>
-          <NavItem>
+          <NavItem menu>
             <a href="#">Home</a>
           </NavItem>
-          <NavItem>
+          <NavItem menu>
             <a href="#">技術</a>
           </NavItem>
-          <NavItem>
+          <NavItem menu>
             <a href="#">ポートフォリオ</a>
           </NavItem>
-          <NavItem>
+          <NavItem menu>
             <a href="#">連絡先</a>
           </NavItem>
         </ListContainer>
