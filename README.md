@@ -4,4 +4,8 @@ npx create-react-app . --template redux-typescript
 
 ## tailwindCSS の導入
 
-npm install tailwindcss postcss autoprefixer
+npm i tailwindcss postcss autoprefixer
+
+## css パッケージマネージャーの導入
+
+npm i styled-components react-responsive
