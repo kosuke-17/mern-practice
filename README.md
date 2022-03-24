@@ -11,3 +11,7 @@ npm i tailwindcss postcss autoprefixer
 npm i styled-components react-responsive
 npm i -D @types/styled-components
 npm i twin.macro
+
+## fontawesome のインストール
+
+npm i @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
