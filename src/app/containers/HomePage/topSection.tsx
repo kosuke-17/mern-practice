@@ -136,6 +136,14 @@ const Avator = styled.div`
   }
 `;
 
+const ButtonsContainer = styled.div`
+  ${tw`
+    flex
+    flex-wrap
+    m-4
+  `}
+`;
+
 const TopSection = () => {
   return (
     <TopSectionContainer>
@@ -145,9 +153,10 @@ const TopSection = () => {
           ポートフォリオはクリエイターやアーティストが自身の実績を相手にアピールするためのものです。
           主な用途としては、転職や就職活動の選考で使用されるほか、SNSなどで自身の活動を発信するためのアピール用にも使用されます
         </Description>
-
-        <Button text="ボタン" />
-        <Button text="ボタン" theme="filled" />
+        <ButtonsContainer>
+          <Button text="ボタン" />
+          <Button text="ボタン" theme="filled" />
+        </ButtonsContainer>
       </LeftContainer>
       <RightContainer>
         {/* 背景のアイコン */}

@@ -15,7 +15,8 @@ const BaseButton = styled.button`
   rounded-md
   text-white
   text-xs
-  font-semibold
+  font-thin
+  md:font-semibold
   border-transparent
   border-2
   border-solid
@@ -23,27 +24,24 @@ const BaseButton = styled.button`
   transition-all
   duration-200
   ease-in-out
-  
   m-1
   `}
 `;
 
 const OutlinedButton = styled(BaseButton)`
   ${tw`
-    w-1/2
-    bg-red-500
+    bg-green-500
     hover:bg-transparent
-    hover:text-red-500
-    hover:border-red-500
+    hover:text-green-500
+    hover:border-green-500
   `}
 `;
 const FilledButton = styled(BaseButton)`
   ${tw`
-    w-1/2
-    border-red-500
-    text-red-500
+    border-green-500
+    text-green-500
     bg-transparent
-    hover:bg-red-500
+    hover:bg-green-500
     hover:text-white
     hover:border-transparent
   `}
