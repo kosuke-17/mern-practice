@@ -1,9 +1,17 @@
-import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import {
+  faCalendarAlt,
+  faCaretDown,
+  faCaretUp,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import tw from "twin.macro";
 import Button from "../button";
 import Marginer from "../marginer";
+
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 // カード全体のスタイル
 const CardContainer = styled.div`
@@ -23,7 +31,7 @@ const CardContainer = styled.div`
 `;
 // 各項目のスタイル
 const ItemContainer = styled.div`
-  ${tw`flex`}
+  ${tw`flex relative`}
 `;
 // アイコンのスタイル
 const Icon = styled.span`
@@ -35,12 +43,24 @@ const Icon = styled.span`
     md:mr-3
   `}
 `;
+// スモールアイコン
+const SmallIcon = styled.span`
+  ${tw`
+    text-gray-500
+    fill-current
+    text-xs
+    md:text-base
+    ml-1
+  `}
+`;
 // 文字のスタイル
 const Name = styled.span`
   ${tw`
     text-gray-500
     text-xs
     md:text-sm
+    cursor-pointer
+    select-none
   `}
 `;
 // 縦棒のスタイル
@@ -53,22 +73,71 @@ const LineSeperator = styled.span`
   md:mx-5
 `}
 `;
+// カレンダーのスタイル
+// user-select: ユーザーがテキストを範囲選択できるかどうかを制御
+const DateCalendar = styled(Calendar)`
+  position: absolute;
+  max-width: none;
+  user-select: none;
+  top: 3.5em;
+  left: -2em;
+`;
 
 const BookCard = (): JSX.Element => {
+  const date = { start: "開始日", end: "終了日" };
+  // 開始日
+  const [startDate, setStartDate] = useState<Date>(new Date());
+  const [isStartCalendarOpen, setStartCalendarOpen] = useState(false);
+  // 終了日
+  const [endDate, setEndDate] = useState<Date>(new Date());
+  const [isEndCalendarOpen, setEndCalendarOpen] = useState(false);
+
+  // カレンダー表示:argで表示させるカレンダーを切り替えている
+  const toggleStartDateCalendar = (date: string) => {
+    switch (date) {
+      case "開始日":
+        setStartCalendarOpen(!isStartCalendarOpen);
+        if (isEndCalendarOpen) setEndCalendarOpen(false);
+        break;
+      case "終了日":
+        setEndCalendarOpen(!isEndCalendarOpen);
+        if (isStartCalendarOpen) setStartCalendarOpen(false);
+        break;
+    }
+  };
+
   return (
     <CardContainer>
       <ItemContainer>
         <Icon>
           <FontAwesomeIcon icon={faCalendarAlt} />
         </Icon>
-        <Name>hoge</Name>
+        <Name onClick={() => toggleStartDateCalendar(date.start)}>
+          {date.start}
+        </Name>
+        <SmallIcon>
+          <FontAwesomeIcon
+            icon={isStartCalendarOpen ? faCaretUp : faCaretDown}
+          />
+        </SmallIcon>
+        {isStartCalendarOpen && (
+          <DateCalendar value={startDate} onChange={setStartDate} />
+        )}
       </ItemContainer>
       <LineSeperator />
       <ItemContainer>
         <Icon>
           <FontAwesomeIcon icon={faCalendarAlt} />
         </Icon>
-        <Name>hoge</Name>
+        <Name onClick={() => toggleStartDateCalendar(date.end)}>
+          {date.end}
+        </Name>
+        <SmallIcon>
+          <FontAwesomeIcon icon={isEndCalendarOpen ? faCaretUp : faCaretDown} />
+        </SmallIcon>
+        {isEndCalendarOpen && (
+          <DateCalendar value={endDate} onChange={setEndDate} />
+        )}
       </ItemContainer>
       <Marginer direction="horizontal" margin="2em" />
       <Button text="予約する" />
