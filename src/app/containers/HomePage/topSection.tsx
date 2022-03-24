@@ -3,6 +3,7 @@ import tw from "twin.macro";
 import SoccerFieldIcon from "../../../assets/images/soccer_field.svg";
 import AvatarImg from "../../../assets/images/avatar.jpg";
 import { SCREENS } from "../../components/responsive";
+import Button from "../../components/button";
 
 // コンテナ全体のスタイル
 const TopSectionContainer = styled.div`
@@ -144,6 +145,9 @@ const TopSection = () => {
           ポートフォリオはクリエイターやアーティストが自身の実績を相手にアピールするためのものです。
           主な用途としては、転職や就職活動の選考で使用されるほか、SNSなどで自身の活動を発信するためのアピール用にも使用されます
         </Description>
+
+        <Button text="ボタン" />
+        <Button text="ボタン" theme="filled" />
       </LeftContainer>
       <RightContainer>
         {/* 背景のアイコン */}
