@@ -15,3 +15,8 @@ npm i twin.macro
 ## fontawesome のインストール
 
 npm i @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
+
+## react カレンダーのインストール
+
+npm i react-calendar
+npm i -D @types/react-calendar
