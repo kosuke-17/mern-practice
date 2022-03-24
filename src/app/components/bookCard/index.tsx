@@ -12,6 +12,7 @@ import Marginer from "../marginer";
 
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { SCREENS } from "../responsive";
 
 // カード全体のスタイル
 const CardContainer = styled.div`
@@ -79,8 +80,12 @@ const DateCalendar = styled(Calendar)`
   position: absolute;
   max-width: none;
   user-select: none;
-  top: 3.5em;
-  left: -2em;
+  top: 2em;
+  left: -75px;
+  @media (min-width: ${SCREENS.md}) {
+    top: 3.5em;
+    left: -2em;
+  }
 `;
 
 const BookCard = (): JSX.Element => {
