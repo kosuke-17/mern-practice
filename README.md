@@ -20,3 +20,13 @@ npm i @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @forta
 
 npm i react-calendar
 npm i -D @types/react-calendar
+
+### LP トップセクション作成
+
+### カスタムボタンコンポーネント作成
+
+### カレンダーコンポーネントで予約カードを作成(カレンダーライブラリ使用)
+
+### 予約手順コンポーネントの作成
+
+### レスポンシブ対応
