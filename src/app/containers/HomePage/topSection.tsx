@@ -14,10 +14,8 @@ const TopSectionContainer = styled.div`
     max-w-screen-2xl
     flex
     justify-between
-    pl-3
-    pr-3
-    lg:pl-12
-    lg:pr-12
+    px-3
+    lg:px-12
   `}
 `;
 
@@ -36,7 +34,7 @@ const RightContainer = styled.div`
     flex
     flex-col
     relative
-    mt-20
+    lg:mt-20
   `}
 `;
 // スローガンのスタイル
