@@ -21,6 +21,10 @@ npm i @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @forta
 npm i react-calendar
 npm i -D @types/react-calendar
 
+## カルーセルを利用するパッケージのインストール(断念)
+
+npm i react-responsive-carousel
+
 ### LP トップセクション作成
 
 ### カスタムボタンコンポーネント作成
@@ -30,3 +34,7 @@ npm i -D @types/react-calendar
 ### 予約手順コンポーネントの作成
 
 ### レスポンシブ対応
+
+### トップスキルズのコンポーネント作成
+
+### カルーセルの導入(断念)

@@ -7,6 +7,7 @@ import Navbar from "../../components/navbar";
 import AboutUs from "./aboutUs";
 import BookingSteps from "./bookingSteps";
 import TopSection from "./topSection";
+import TopSkills from "./topSkills";
 
 // overflow-x-hidden : ブロックレベル要素の中身が溢れた場合の表示方法
 // flex-col : flexの方向を制御する(垂直に配置)
@@ -32,6 +33,8 @@ const HomePage: FC = () => {
       <BookingSteps />
       <Marginer direction="vertical" margin="7em" />
       <AboutUs />
+      <Marginer direction="vertical" margin="7em" />
+      <TopSkills />
     </PageContainer>
   );
 };

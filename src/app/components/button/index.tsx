@@ -4,6 +4,7 @@ import tw from "twin.macro";
 interface IButtonProps {
   theme?: "filled" | "outlined";
   text: string;
+  className?: string;
 }
 
 const BaseButton = styled.button`
@@ -47,11 +48,11 @@ const FilledButton = styled(BaseButton)`
 `;
 
 // テーマによる利用ボタンの切り替え
-const Button = ({ theme, text }: IButtonProps): JSX.Element => {
+const Button = ({ theme, text, className }: IButtonProps): JSX.Element => {
   if (theme === "filled") {
-    return <FilledButton>{text}</FilledButton>;
+    return <FilledButton className={className}>{text}</FilledButton>;
   } else {
-    return <OutlinedButton>{text}</OutlinedButton>;
+    return <OutlinedButton className={className}>{text}</OutlinedButton>;
   }
 };
 
