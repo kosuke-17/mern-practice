@@ -2,6 +2,14 @@ import styled from "styled-components";
 import ReactLogoImg from "../../../assets/images/react.png";
 import tw from "twin.macro";
 
+interface ILogoProps {
+  color: "white" | "dark";
+}
+
+interface LogoTextProps {
+  color: string;
+}
+
 // ロゴ全体のスタイル
 const LogoContainer = styled.div`
   ${tw`
@@ -10,14 +18,16 @@ const LogoContainer = styled.div`
   `}
 `;
 // ロゴの文字
-const LogoText = styled.div`
+const LogoText = styled.div<{ color: string }>`
   ${tw`
     text-xl
     md:text-2xl
     font-bold
     text-black
     m-1
-  `}
+    `}
+  ${({ color }: LogoTextProps) =>
+    color === "white" ? tw`text-white` : tw`text-black`}
 `;
 
 // 画像のスタイル
@@ -30,13 +40,14 @@ const Image = styled.div`
     height: 100%;
   }
 `;
-const Logo = () => {
+const Logo = (props: ILogoProps) => {
+  const { color } = props;
   return (
     <LogoContainer>
       <Image>
         <img src={ReactLogoImg} alt="react-img" />
       </Image>
-      <LogoText>React</LogoText>
+      <LogoText color={color || "dark"}>React</LogoText>
     </LogoContainer>
   );
 };
