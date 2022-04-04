@@ -7,3 +7,10 @@ export interface ISkill {
   monthlyPrice: number;
   gas: string;
 }
+export interface Skill {
+  id: string;
+  name: string;
+  img: string;
+  content: string;
+  stackTime: number;
+}

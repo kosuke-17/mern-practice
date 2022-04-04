@@ -5,6 +5,8 @@ import Skill from "../../components/skill";
 import ReactImg from "../../../assets/images/react.png";
 import NextImg from "../../../assets/images/nextjs.png";
 import TSImg from "../../../assets/images/typescript.png";
+import skillServices from "../../services/skillServices";
+import { useEffect } from "react";
 
 const TopSkillsContainer = styled.div`
   ${tw`
@@ -38,35 +40,46 @@ const SkillsContainer = styled.div`
     md:mt-10
   `}
 `;
+// ダミーデータ
+const testSkill1: ISkill = {
+  name: "TypeScript",
+  mileage: "10k",
+  thumbnailSrc: TSImg,
+  dailyPrice: 40,
+  monthlyPrice: 50,
+  gearType: "Auto",
+  gas: "Petrol",
+};
+const testSkill2: ISkill = {
+  name: "TypeScript",
+  mileage: "10k",
+  thumbnailSrc: ReactImg,
+  dailyPrice: 40,
+  monthlyPrice: 50,
+  gearType: "Auto",
+  gas: "Petrol",
+};
+const testSkill3: ISkill = {
+  name: "React",
+  mileage: "10k",
+  thumbnailSrc: NextImg,
+  dailyPrice: 40,
+  monthlyPrice: 50,
+  gearType: "Auto",
+  gas: "Petrol",
+};
 
 const TopSkills = () => {
-  const testSkill1: ISkill = {
-    name: "TypeScript",
-    mileage: "10k",
-    thumbnailSrc: TSImg,
-    dailyPrice: 40,
-    monthlyPrice: 50,
-    gearType: "Auto",
-    gas: "Petrol",
+  const fetchTopSkills = async () => {
+    const skills = await skillServices.getSkills().catch((err) => {
+      console.log("Error" + err);
+    });
+    console.dir(skills);
   };
-  const testSkill2: ISkill = {
-    name: "TypeScript",
-    mileage: "10k",
-    thumbnailSrc: ReactImg,
-    dailyPrice: 40,
-    monthlyPrice: 50,
-    gearType: "Auto",
-    gas: "Petrol",
-  };
-  const testSkill3: ISkill = {
-    name: "React",
-    mileage: "10k",
-    thumbnailSrc: NextImg,
-    dailyPrice: 40,
-    monthlyPrice: 50,
-    gearType: "Auto",
-    gas: "Petrol",
-  };
+
+  useEffect(() => {
+    fetchTopSkills();
+  }, []);
   return (
     <TopSkillsContainer>
       <Title>スキルを探す(タイトル)</Title>
