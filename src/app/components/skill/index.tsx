@@ -130,6 +130,7 @@ const RentButton = styled(Button)`
 
 const Skill = (props: Skill_TYPE_PROPS) => {
   const { id, name, img, content, stackTime } = props;
+
   return (
     <SkillContainer>
       <SkillThumbnail>

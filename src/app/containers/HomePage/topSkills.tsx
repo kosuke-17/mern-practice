@@ -2,9 +2,6 @@ import styled from "styled-components";
 import tw from "twin.macro";
 import { Skill_TYPE } from "../../../typings/skill";
 import Skill from "../../components/skill";
-import ReactImg from "../../../assets/images/react.png";
-import NextImg from "../../../assets/images/nextjs.png";
-import TSImg from "../../../assets/images/typescript.png";
 import skillServices from "../../services/skillServices";
 import { useEffect } from "react";
 import { createSelector, Dispatch } from "@reduxjs/toolkit";
@@ -44,28 +41,6 @@ const SkillsContainer = styled.div`
     md:mt-10
   `}
 `;
-// ダミーデータ
-const testSkill1 = {
-  id: 1,
-  name: "TypeScript",
-  img: TSImg,
-  content: "TSのCONTENT",
-  stackTime: 330,
-};
-const testSkill2 = {
-  id: 1,
-  name: "Next.js",
-  img: NextImg,
-  content: "Next.jsのCONTENT",
-  stackTime: 40,
-};
-const testSkill3 = {
-  id: 1,
-  name: "React",
-  img: ReactImg,
-  content: "ReactのCONTENT",
-  stackTime: 20,
-};
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setTopSkills: (skills: Skill_TYPE[]) => dispatch(setTopSkills(skills)),
@@ -82,29 +57,32 @@ const TopSkills = () => {
     const skills = await skillServices.getSkills().catch((err) => {
       console.log("Error" + err);
     });
-    console.dir(skills);
     // reduxで状態管理する
     if (skills) setTopSkills(skills);
   };
-  console.log("topSkills" + JSON.stringify(topSkills));
-
-  const SkillsData = topSkills.skills.map((skillData) => {
-    return <Skill key={skillData.id} {...skillData} />;
-  });
-  console.log(SkillsData);
 
   useEffect(() => {
     fetchTopSkills();
   }, []);
+
+  // 取得データが存在しなければtrue
+  const isEmptyTopSkills = !topSkills || topSkills.skills.length === 0;
+  // const isEmptyTopSkills = true;
+
+  if (isEmptyTopSkills) return null;
+
+  // 取得データが存在すればSkillコンポーネントを返す
+  //
+  const skills =
+    (!isEmptyTopSkills &&
+      topSkills.skills.map((skillData) => {
+        return <Skill key={skillData.id} {...skillData} />;
+      })) ||
+    [];
   return (
     <TopSkillsContainer>
       <Title>スキルを探す(タイトル)</Title>
-      <SkillsContainer>
-        {SkillsData}
-        <Skill {...testSkill1} />
-        <Skill {...testSkill2} />
-        <Skill {...testSkill3} />
-      </SkillsContainer>
+      <SkillsContainer>{skills && skills}</SkillsContainer>
     </TopSkillsContainer>
   );
 };
