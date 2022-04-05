@@ -1,14 +1,5 @@
-export interface ISkill {
-  thumbnailSrc: string;
-  name: string;
-  mileage: string;
-  gearType: string;
-  dailyPrice: number;
-  monthlyPrice: number;
-  gas: string;
-}
-export interface Skill {
-  id: string;
+export interface Skill_TYPE {
+  id: number;
   name: string;
   img: string;
   content: string;

@@ -6,10 +6,10 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import tw from "twin.macro";
-import { ISkill } from "../../../typings/skill";
+import { Skill_TYPE } from "../../../typings/skill";
 import Button from "../button";
 
-interface ISkillProps extends ISkill {}
+interface Skill_TYPE_PROPS extends Skill_TYPE {}
 
 const SkillContainer = styled.div`
   width: 16.5em;
@@ -128,24 +128,15 @@ const RentButton = styled(Button)`
   `}
 `;
 
-const Skill = (props: ISkillProps) => {
-  const {
-    name,
-    thumbnailSrc,
-    dailyPrice,
-    monthlyPrice,
-    mileage,
-    gearType,
-    gas,
-  } = props;
-
+const Skill = (props: Skill_TYPE_PROPS) => {
+  const { id, name, img, content, stackTime } = props;
   return (
     <SkillContainer>
       <SkillThumbnail>
-        <img src={thumbnailSrc} alt="スキル" />
+        <img src={img} alt="スキル" />
       </SkillThumbnail>
       <SkillName>{name}</SkillName>
-      <PricesContainer>
+      {/* <PricesContainer>
         <DaylyPrice>
           {dailyPrice}
           <SmallText>円/日</SmallText>
@@ -175,7 +166,7 @@ const Skill = (props: ISkillProps) => {
           </SmallIcon>
           <SkillInfo>{gas}</SkillInfo>
         </SkillDetail>
-      </SkillDetailsContainer>
+      </SkillDetailsContainer> */}
       <RentButton text="レントボタン" />
     </SkillContainer>
   );

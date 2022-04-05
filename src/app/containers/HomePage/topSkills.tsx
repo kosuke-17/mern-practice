@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import tw from "twin.macro";
-import { ISkill } from "../../../typings/skill";
+import { Skill_TYPE } from "../../../typings/skill";
 import Skill from "../../components/skill";
 import ReactImg from "../../../assets/images/react.png";
 import NextImg from "../../../assets/images/nextjs.png";
 import TSImg from "../../../assets/images/typescript.png";
 import skillServices from "../../services/skillServices";
 import { useEffect } from "react";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setTopSkills } from "./slice";
+import { useDispatch } from "react-redux";
 
 const TopSkillsContainer = styled.div`
   ${tw`
@@ -41,40 +44,41 @@ const SkillsContainer = styled.div`
   `}
 `;
 // ダミーデータ
-const testSkill1: ISkill = {
+const testSkill1 = {
+  id: 1,
   name: "TypeScript",
-  mileage: "10k",
-  thumbnailSrc: TSImg,
-  dailyPrice: 40,
-  monthlyPrice: 50,
-  gearType: "Auto",
-  gas: "Petrol",
+  img: TSImg,
+  content: "TSのCONTENT",
+  stackTime: 330,
 };
-const testSkill2: ISkill = {
-  name: "TypeScript",
-  mileage: "10k",
-  thumbnailSrc: ReactImg,
-  dailyPrice: 40,
-  monthlyPrice: 50,
-  gearType: "Auto",
-  gas: "Petrol",
+const testSkill2 = {
+  id: 1,
+  name: "Next.js",
+  img: NextImg,
+  content: "Next.jsのCONTENT",
+  stackTime: 40,
 };
-const testSkill3: ISkill = {
+const testSkill3 = {
+  id: 1,
   name: "React",
-  mileage: "10k",
-  thumbnailSrc: NextImg,
-  dailyPrice: 40,
-  monthlyPrice: 50,
-  gearType: "Auto",
-  gas: "Petrol",
+  img: ReactImg,
+  content: "ReactのCONTENT",
+  stackTime: 20,
 };
 
+const actionDispatch = (dispatch: Dispatch) => ({
+  setTopSkills: (skills: Skill_TYPE[]) => dispatch(setTopSkills(skills)),
+});
+
 const TopSkills = () => {
+  const { setTopSkills } = actionDispatch(useDispatch());
   const fetchTopSkills = async () => {
     const skills = await skillServices.getSkills().catch((err) => {
       console.log("Error" + err);
     });
     console.dir(skills);
+    // reduxで状態管理する
+    if (skills) setTopSkills(skills);
   };
 
   useEffect(() => {
