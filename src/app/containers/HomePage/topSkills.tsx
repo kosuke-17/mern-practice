@@ -7,9 +7,10 @@ import NextImg from "../../../assets/images/nextjs.png";
 import TSImg from "../../../assets/images/typescript.png";
 import skillServices from "../../services/skillServices";
 import { useEffect } from "react";
-import { Dispatch } from "@reduxjs/toolkit";
+import { createSelector, Dispatch } from "@reduxjs/toolkit";
 import { setTopSkills } from "./slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { makeSelectTopSkills } from "./selectors";
 
 const TopSkillsContainer = styled.div`
   ${tw`
@@ -70,7 +71,12 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setTopSkills: (skills: Skill_TYPE[]) => dispatch(setTopSkills(skills)),
 });
 
+const stateSelector = createSelector(makeSelectTopSkills, (topSkills) => ({
+  topSkills,
+}));
+
 const TopSkills = () => {
+  const { topSkills } = useSelector(stateSelector);
   const { setTopSkills } = actionDispatch(useDispatch());
   const fetchTopSkills = async () => {
     const skills = await skillServices.getSkills().catch((err) => {
@@ -80,6 +86,12 @@ const TopSkills = () => {
     // reduxで状態管理する
     if (skills) setTopSkills(skills);
   };
+  console.log("topSkills" + JSON.stringify(topSkills));
+
+  const SkillsData = topSkills.skills.map((skillData) => {
+    return <Skill key={skillData.id} {...skillData} />;
+  });
+  console.log(SkillsData);
 
   useEffect(() => {
     fetchTopSkills();
@@ -88,9 +100,7 @@ const TopSkills = () => {
     <TopSkillsContainer>
       <Title>スキルを探す(タイトル)</Title>
       <SkillsContainer>
-        <Skill {...testSkill1} />
-        <Skill {...testSkill2} />
-        <Skill {...testSkill3} />
+        {SkillsData}
         <Skill {...testSkill1} />
         <Skill {...testSkill2} />
         <Skill {...testSkill3} />
