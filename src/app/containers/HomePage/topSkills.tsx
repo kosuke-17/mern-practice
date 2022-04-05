@@ -42,6 +42,18 @@ const SkillsContainer = styled.div`
   `}
 `;
 
+const EmptySkills = styled.div`
+  ${tw`
+    w-full
+    flex
+    justify-center
+    items-center
+    text-sm
+    pt-4
+    text-gray-500
+  `}
+`;
+
 const actionDispatch = (dispatch: Dispatch) => ({
   setTopSkills: (skills: Skill_TYPE[]) => dispatch(setTopSkills(skills)),
 });
@@ -69,10 +81,7 @@ const TopSkills = () => {
   const isEmptyTopSkills = !topSkills || topSkills.skills.length === 0;
   // const isEmptyTopSkills = true;
 
-  if (isEmptyTopSkills) return null;
-
   // 取得データが存在すればSkillコンポーネントを返す
-  //
   const skills =
     (!isEmptyTopSkills &&
       topSkills.skills.map((skillData) => {
@@ -81,8 +90,9 @@ const TopSkills = () => {
     [];
   return (
     <TopSkillsContainer>
-      <Title>スキルを探す(タイトル)</Title>
-      <SkillsContainer>{skills && skills}</SkillsContainer>
+      <Title>マイスキルセット</Title>
+      {isEmptyTopSkills && <EmptySkills>スキルが存在しません!</EmptySkills>}
+      {!isEmptyTopSkills && <SkillsContainer>{skills}</SkillsContainer>}
     </TopSkillsContainer>
   );
 };
