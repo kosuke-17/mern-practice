@@ -1,5 +1,5 @@
 import { Skill_TYPE } from "../../../typings/skill";
 
-export interface IHomePageSlice {
-  topSkills: Skill_TYPE[];
+export interface IHomePageState {
+  topSkills: { skills: Skill_TYPE[] };
 }

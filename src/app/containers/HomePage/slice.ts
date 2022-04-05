@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IHomePageSlice } from "./type";
+import { IHomePageState } from "./type";
 
-const initialState: IHomePageSlice = {
-  topSkills: [],
+const initialState: IHomePageState = {
+  topSkills: { skills: [] },
 };
 // actionとsliceを一緒に管理
 export const homePageSlice = createSlice({
